@@ -1,0 +1,52 @@
+<div class="form-container">
+    @if (!isLogin()) {
+    <h2>Register</h2>
+    <form action="" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="firstName">First Name</label>
+            <input type="text" placeholder="First Name" id="firstName" name="firstName" formControlName="firstName">
+        </div>
+        <div>
+            <label for="lastName">Last Name</label>
+            <input type="text" placeholder="Last Name" id="lastName" name="lastName" formControlName="lastName">
+        </div>
+        <div>
+            <label for="username">Username</label>
+            <input type="text" placeholder="Username" id="username" name="username" formControlName="username">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" placeholder="Email" id="email" name="email" formControlName="email">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" placeholder="Password" id="password" name="password" formControlName="password">
+        </div>
+        <div>
+            <label for="password">Confirm Password</label>
+            <input type="password" placeholder="Confirm Password" id="confirmPassword" name="confirmPassword"
+                formControlName="confirmPassword">
+        </div>
+        @if (errorMessage != null) {
+        <p class="error">{{errorMessage}}</p> }
+        <button class="btn" type="submit" [disabled]="authForm.invalid">Register</button>
+    </form>
+    } @else {
+    <h2>Login</h2>
+    <form action="" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" placeholder="Username" id="username" name="username" formControlName="username">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" placeholder="Password" id="password" name="password" formControlName="password">
+        </div>
+        @if (errorMessage != null) {
+        <p class="error">{{errorMessage}}</p>
+        }
+        <button class="btn" type="submit" [disabled]="authForm.invalid">Login</button>
+    </form>
+
+    }
+</div>
