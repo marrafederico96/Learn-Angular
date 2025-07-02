@@ -1,24 +1,9 @@
 <main>
     <section class="left-panel">
-        <h3>I tuoi gruppi</h3>
-        <form action="" [formGroup]="groupForm" (ngSubmit)="onSubmit()">
-            <input type="text" formControlName="groupName" placeholder="Group Name">
-            <button class="btn">Create Group</button>
-        </form>
-        <hr>
-        @if (groupList != null) {
-        @for (group of groupList; track $index) {
-        <div class="group-info">
-            <button class="btn">{{group.groupName}}</button>
-        </div>
-        }
-        } @else {
-        <div class="general-msg">Nessun gruppo trovato</div>
-        }
+        <app-left-panel></app-left-panel>
     </section>
     <section class="central-panel">
     </section>
     <section class="right-panel">
-        <h3>I tuoi amici</h3>
     </section>
 </main>
