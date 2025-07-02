@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { inject, Injectable, signal, Signal } from "@angular/core";
+import { inject, Injectable, Signal, signal } from "@angular/core";
 import { GroupDTO } from "../dto/GroupDTO";
 import { Observable } from "rxjs";
 
@@ -9,6 +9,17 @@ import { Observable } from "rxjs";
 export class GroupService {
     private http = inject(HttpClient);
     private url = "http://localhost:8080";
+
+    private _groupInfo = signal<GroupDTO[] | null>(null);
+    groupInfo: Signal<GroupDTO[] | null> = this._groupInfo.asReadonly();
+
+    initGroupInfo() {
+        this.getGroup().subscribe({
+            next: (data) => {
+                this._groupInfo.set(data);
+            }
+        });
+    }
 
     getGroup(): Observable<GroupDTO[]> {
         return this.http.get<GroupDTO[]>(`${this.url}/group/get`);

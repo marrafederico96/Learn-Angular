@@ -4,12 +4,11 @@
     <button class="btn">Create Group</button>
 </form>
 <hr>
-@if (groupList != null) {
-@for (group of groupList; track $index) {
+@if (groupInfo() != null) {
+@for (group of groupInfo(); track $index) {
 <div class="group-info">
-    <button class="btn">{{group.groupName}}</button>
+    <button class="btn">{{ group.groupName }}</button>
 </div>
 }
 } @else {
-<div class="general-msg">Nessun gruppo trovato</div>
-}
+<div class="general-msg">Nessun gruppo trovato</div> }
