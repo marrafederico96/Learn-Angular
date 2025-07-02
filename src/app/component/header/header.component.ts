@@ -18,12 +18,10 @@ export class HeaderComponent {
   constructor() {
     this.isLoggedIn = this.auth.isLoggedIn;
     this.userInfo = this.auth.userInfo;
-    this.auth.initUserData();
   }
 
   logout(): void {
     this.auth.logout();
   }
-
 
 }

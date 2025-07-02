@@ -1,0 +1,60 @@
+main {
+    display: grid;
+    grid-template-columns: 2fr 8fr 2fr;
+    height: 100vh;
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.left-panel {
+    border-right: 1px solid var(--border-color);
+}
+
+.right-panel {
+    border-left: 1px solid var(--border-color);
+}
+
+.left-panel h3,
+.central-panel h3,
+.right-panel h3 {
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px;
+}
+
+.group-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.btn {
+    width: 80%;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+form input {
+    padding: 5px;
+    width: 80%;
+}
+
+form button {
+    margin-top: 10px;
+}
+
+hr.new {
+    border: 1px solid var(--border-color);
+}
+
+.general-msg {
+    text-align: center;
+    margin-top: 10px;
+}

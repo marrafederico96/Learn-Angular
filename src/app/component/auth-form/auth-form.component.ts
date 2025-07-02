@@ -28,11 +28,9 @@ export class AuthFormComponent implements OnInit {
 
   }
 
-  isLogin() {
+  isLogin(): boolean {
     return this.currentRoute === "login";
   }
-
-
 
   generateForm() {
     if (!this.isLogin()) {
@@ -52,7 +50,6 @@ export class AuthFormComponent implements OnInit {
     }
   }
 
-
   onSubmit() {
     if (this.currentRoute === "login") {
       this.auth.login(this.authForm.value).subscribe({
@@ -60,7 +57,11 @@ export class AuthFormComponent implements OnInit {
           this.authForm.reset();
         },
         error: (err) => {
-          this.errorMessage = err.error.message;
+          if (err.error.message != null) {
+            this.errorMessage = err.error.message;
+          } else {
+            this.errorMessage = "Credenziali non valide."
+          }
         }
       });
     } else {
@@ -69,7 +70,11 @@ export class AuthFormComponent implements OnInit {
           this.authForm.reset();
         },
         error: (err) => {
-          this.errorMessage = err.error.message;
+          if (err.error.message != null) {
+            this.errorMessage = err.error.message;
+          } else {
+            this.errorMessage = "Dati inseriti non validi."
+          }
         }
       });
     }

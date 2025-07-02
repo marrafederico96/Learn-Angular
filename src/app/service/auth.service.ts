@@ -41,7 +41,11 @@ export class AuthService {
   }
 
   register(registerDTO: RegisterDTO): Observable<void> {
-    return this.http.post<any>(`${this.url}/auth/register`, registerDTO);
+    return this.http.post<any>(`${this.url}/auth/register`, registerDTO).pipe(
+      tap(() => {
+        this.router.navigate(["/"]);
+      })
+    );
   }
 
   login(loginDTO: LoginDTO): Observable<LoginResponseDTO> {
@@ -53,7 +57,7 @@ export class AuthService {
           localStorage.setItem("activeToken", response.activeToken);
           this._isLoggedIn.set(true);
           this.initUserData();
-          this.router.navigate(["/"]);
+          this.router.navigate(["/dashboard"]);
         }
       })
     );

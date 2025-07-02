@@ -1,12 +1,24 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    padding: 10px;
     border-bottom: 1px solid var(--border-color);
 }
 
-header a:first-of-type,
-header button:first-of-type {
+header a:first-of-type {
     margin-right: 20px;
+}
+
+header>nav {
+    justify-self: end;
+}
+
+header>nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header>h1 {
+    width: 100%;
 }

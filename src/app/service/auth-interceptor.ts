@@ -28,15 +28,16 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         return auth.refresh().pipe(
           switchMap((response) => {
             const updatedToken = response.activeToken;
-
             const retrieReq = req.clone({
               headers: req.headers.set("Authorization", `Bearer ${updatedToken}`),
-              withCredentials: true,
             });
             return next(retrieReq);
           }),
-          catchError((refreshError) => {
-            auth.logout();
+          catchError((refreshError: HttpErrorResponse) => {
+            if (refreshError.status === 401) {
+              auth.logout();
+              return throwError(() => refreshError);
+            }
             return throwError(() => refreshError);
           })
         );

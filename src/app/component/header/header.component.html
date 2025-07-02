@@ -2,7 +2,7 @@
     <h1><a routerLink="/">Friend Stuff</a></h1>
     <nav>
         @if (isLoggedIn() && userInfo()) {
-        <button class="btn">{{userInfo()?.username}}</button>
+        <a class="btn" routerLink="/dashboard">{{userInfo()?.username}}</a>
         <button (click)="logout()" class="btn">Logout</button>
         } @else {
         <a class="btn" routerLink="/auth/register">Register</a>

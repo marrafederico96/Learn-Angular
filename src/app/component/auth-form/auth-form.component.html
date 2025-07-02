@@ -23,13 +23,13 @@
             <input type="password" placeholder="Password" id="password" name="password" formControlName="password">
         </div>
         <div>
-            <label for="password">Confirm Password</label>
+            <label for="ConfirmPassword">Confirm Password</label>
             <input type="password" placeholder="Confirm Password" id="confirmPassword" name="confirmPassword"
                 formControlName="confirmPassword">
         </div>
         @if (errorMessage != null) {
         <p class="error">{{errorMessage}}</p> }
-        <button class="btn" type="submit" [disabled]="authForm.invalid">Register</button>
+        <button class="btn" type="submit">Register</button>
     </form>
     } @else {
     <h2>Login</h2>
@@ -45,7 +45,7 @@
         @if (errorMessage != null) {
         <p class="error">{{errorMessage}}</p>
         }
-        <button class="btn" type="submit" [disabled]="authForm.invalid">Login</button>
+        <button class="btn" type="submit">Login</button>
     </form>
 
     }
