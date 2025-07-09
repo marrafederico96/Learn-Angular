@@ -1,4 +1,4 @@
-# FriendStuffFrontend - WIP
+# Learn - Angular - WIP
 
 Creazione frontend per progetto Friend Stuff, con focus su:
 
