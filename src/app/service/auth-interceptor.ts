@@ -24,17 +24,17 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(newReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 401) {
+      if (error.status === 401 && !req.url.includes("/auth/refresh")) {
         return auth.refresh().pipe(
           switchMap((response) => {
-            const updatedToken = response.activeToken;
+            const updatedToken = response.accessToken;
             const retrieReq = req.clone({
               headers: req.headers.set("Authorization", `Bearer ${updatedToken}`),
             });
             return next(retrieReq);
           }),
           catchError((refreshError: HttpErrorResponse) => {
-            if (refreshError.status === 401) {
+            if (refreshError.status) {
               auth.logout();
               return throwError(() => refreshError);
             }

@@ -1,4 +1,4 @@
 export interface LoginResponseDTO {
-    activeToken: string;
+    accessToken: string;
     message?: string;
 }

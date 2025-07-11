@@ -26,7 +26,7 @@ export class AuthService {
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
-      this._isLoggedIn.set(!!localStorage.getItem("activeToken"));
+      this._isLoggedIn.set(!!localStorage.getItem("accessToken"));
     }
   }
 
@@ -54,7 +54,7 @@ export class AuthService {
     }).pipe(
       tap(response => {
         if (isPlatformBrowser(this.platformId)) {
-          localStorage.setItem("activeToken", response.activeToken);
+          localStorage.setItem("accessToken", response.accessToken);
           this._isLoggedIn.set(true);
           this.initUserData();
           this.router.navigate(["/dashboard"]);
@@ -72,7 +72,7 @@ export class AuthService {
         }),
         finalize(() => {
           if (isPlatformBrowser(this.platformId)) {
-            localStorage.removeItem("activeToken");
+            localStorage.removeItem("accessToken");
             this._isLoggedIn.set(false);
             this._userInfo.set(null);
 
@@ -87,8 +87,8 @@ export class AuthService {
     return this.http.post<LoginResponseDTO>(`${this.url}/auth/refresh`, {}, { withCredentials: true }).pipe(
       tap(response => {
         if (typeof window !== "undefined") {
-          localStorage.removeItem("activeToken");
-          localStorage.setItem("activeToken", response.activeToken);
+          localStorage.removeItem("accessToken");
+          localStorage.setItem("accessToken", response.accessToken);
         }
       })
     );
@@ -100,7 +100,7 @@ export class AuthService {
 
   isUserLogin(): boolean {
     if (isPlatformBrowser(this.platformId)) {
-      return !!localStorage.getItem("activeToken");
+      return !!localStorage.getItem("accessToken");
     }
     return false;
   }
